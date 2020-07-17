@@ -16,5 +16,32 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<import resource="conversion-service.xml" />
+	
+	
+	<!-- Bulletins -->
+	
+	<bean id="bulletin1" class="acme.entities.Bulletin">
+		<property name="author" value="Bad Bunny"/>
+		<property name="title" value="Safaera"/>
+		<property name="text" value="Trending song"/>
+		<property name="moment" value="2020/04/04 18:07"/>
+		<property name="category" value="Music"/>
+	</bean>
+	
+	<bean id="bulletin2" class="acme.entities.Bulletin">
+		<property name="author" value="Colton Joy"/>
+		<property name="title" value="The Photo"/>
+		<property name="text" value="Winner of PhotoWorld 2016"/>
+		<property name="moment" value="2017/11/12 9:30"/>
+		<property name="category" value="Photography"/>
+	</bean>
+	
+	<bean id="bulletin3" class="acme.entities.Bulletin">
+		<property name="author" value="Nilbert Ghomus"/>
+		<property name="title" value="Little by little"/>
+		<property name="text" value="Bestseller"/>
+		<property name="moment" value="2019/09/26 12:45"/>
+		<property name="category" value="Literature"/>
+	</bean>
 
 </beans>
