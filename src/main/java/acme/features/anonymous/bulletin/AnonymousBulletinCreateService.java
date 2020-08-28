@@ -16,8 +16,6 @@ import acme.framework.services.AbstractCreateService;
 @Service
 public class AnonymousBulletinCreateService implements AbstractCreateService<Anonymous, Bulletin> {
 
-	// Internal state --------------------------------------------------------------------
-
 	@Autowired
 	AnonymousBulletinRepository repository;
 
@@ -34,27 +32,10 @@ public class AnonymousBulletinCreateService implements AbstractCreateService<Ano
 		assert request != null;
 
 		Bulletin result;
-		Date moment;
-
-		moment = new Date(System.currentTimeMillis() - 1);
 
 		result = new Bulletin();
-		result.setAuthor("Place the author name");
-		result.setTitle("The best title for this is...");
-		result.setText("Something relevant?");
-		result.setMoment(moment);
-		result.setCategory("What's the category?");
 
 		return result;
-	}
-
-	@Override
-	public void unbind(final Request<Bulletin> request, final Bulletin entity, final Model model) {
-		assert request != null;
-		assert entity != null;
-		assert model != null;
-
-		request.unbind(entity, model, "author", "title", "text", "moment", "category");
 	}
 
 	@Override
@@ -63,7 +44,19 @@ public class AnonymousBulletinCreateService implements AbstractCreateService<Ano
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors);
+		Date moment = new Date(System.currentTimeMillis() - 1);
+		entity.setMoment(moment);
+
+		request.bind(entity, errors, "moment");
+	}
+
+	@Override
+	public void unbind(final Request<Bulletin> request, final Bulletin entity, final Model model) {
+		assert request != null;
+		assert entity != null;
+		assert model != null;
+
+		request.unbind(entity, model, "author", "title", "text", "category");
 	}
 
 	@Override
